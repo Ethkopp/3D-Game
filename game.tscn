@@ -1,12 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c822wdnkal36h"]
+[gd_scene load_steps=6 format=3 uid="uid://c822wdnkal36h"]
 
+[ext_resource type="PackedScene" uid="uid://dya6b7pfmd2v5" path="res://Terrain/terrain.tscn" id="1_nnjn8"]
 [ext_resource type="PackedScene" uid="uid://dqv6bn5a2am8h" path="res://Player/player.tscn" id="1_vigsq"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7aqdi"]
-size = Vector3(20, 1, 20)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fecmd"]
-data = PackedVector3Array(-10, 0.5, 10, 10, 0.5, 10, -10, -0.5, 10, 10, 0.5, 10, 10, -0.5, 10, -10, -0.5, 10, 10, 0.5, -10, -10, 0.5, -10, 10, -0.5, -10, -10, 0.5, -10, -10, -0.5, -10, 10, -0.5, -10, 10, 0.5, 10, 10, 0.5, -10, 10, -0.5, 10, 10, 0.5, -10, 10, -0.5, -10, 10, -0.5, 10, -10, 0.5, -10, -10, 0.5, 10, -10, -0.5, -10, -10, 0.5, 10, -10, -0.5, 10, -10, -0.5, -10, 10, 0.5, 10, -10, 0.5, 10, 10, 0.5, -10, -10, 0.5, 10, -10, 0.5, -10, 10, 0.5, -10, -10, -0.5, 10, 10, -0.5, 10, -10, -0.5, -10, 10, -0.5, 10, 10, -0.5, -10, -10, -0.5, -10)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xlr3i"]
 
@@ -20,20 +15,13 @@ ambient_light_source = 3
 
 [node name="Game" type="Node3D"]
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pr0rm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_7aqdi")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("ConcavePolygonShape3D_fecmd")
+[node name="Terrain" parent="." instance=ExtResource("1_nnjn8")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.899725, 0.436456, 0, -0.436456, 0.899725, -0.335442, 6.03336, 10.1979)
 fov = 67.5
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_pr0rm")
 
 [node name="Player" parent="." instance=ExtResource("1_vigsq")]
