@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c822wdnkal36h"]
+[gd_scene load_steps=7 format=3 uid="uid://c822wdnkal36h"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_kt1sf"]
-[ext_resource type="PackedScene" uid="uid://b2irrn6id3ymj" path="res://Player/blaster.tscn" id="2_6kbtq"]
+[ext_resource type="PackedScene" uid="uid://dqv6bn5a2am8h" path="res://Player/player.tscn" id="1_vigsq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7aqdi"]
 size = Vector3(20, 1, 20)
@@ -18,16 +17,6 @@ sky_material = SubResource("ProceduralSkyMaterial_xlr3i")
 background_mode = 2
 sky = SubResource("Sky_wst1d")
 ambient_light_source = 3
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_yo2g3"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_jo78y"]
-size = Vector3(1, 0.2, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jqrup"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_44pin"]
-size = Vector3(1, 0.2, 1)
 
 [node name="Game" type="Node3D"]
 
@@ -47,32 +36,4 @@ fov = 67.5
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pr0rm")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0502899, 0)
-script = ExtResource("1_kt1sf")
-
-[node name="Body" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-mesh = SubResource("CapsuleMesh_yo2g3")
-
-[node name="Feet" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676434, 0)
-mesh = SubResource("BoxMesh_jo78y")
-
-[node name="Pivot" type="Node3D" parent="Player"]
-
-[node name="Camera" type="Camera3D" parent="Player/Pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-current = true
-
-[node name="Weapon" type="Node3D" parent="Player/Pivot"]
-
-[node name="Blaster" parent="Player/Pivot/Weapon" instance=ExtResource("2_6kbtq")]
-
-[node name="Body_Collision" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-shape = SubResource("CapsuleShape3D_jqrup")
-
-[node name="Feet_Collision" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.650741, 0)
-shape = SubResource("BoxShape3D_44pin")
+[node name="Player" parent="." instance=ExtResource("1_vigsq")]
