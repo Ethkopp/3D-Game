@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c822wdnkal36h"]
+[gd_scene load_steps=12 format=3 uid="uid://c822wdnkal36h"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_kt1sf"]
+[ext_resource type="PackedScene" uid="uid://b2irrn6id3ymj" path="res://Player/blaster.tscn" id="2_6kbtq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7aqdi"]
 size = Vector3(20, 1, 20)
@@ -65,6 +66,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 current = true
 
 [node name="Weapon" type="Node3D" parent="Player/Pivot"]
+
+[node name="Blaster" parent="Player/Pivot/Weapon" instance=ExtResource("2_6kbtq")]
 
 [node name="Body_Collision" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
